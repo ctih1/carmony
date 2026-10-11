@@ -6,8 +6,15 @@ import beamng_adapter
 
 from audio_manager import AudioManager, CarStatus, Settings, keep_between_0_1
 
+end = "mp3"
+prefix = "new/"
 a = AudioManager(
-    ["assets/bass.mp3", "assets/drums.mp3", "assets/other.mp3", "assets/vocals.mp3"]
+    [
+        f"assets/{prefix}bass.{end}",
+        f"assets/{prefix}drums.{end}",
+        f"assets/{prefix}misc.{end}",
+        f"assets/{prefix}vocals.{end}",
+    ]
 )
 
 # speed = 0
@@ -82,9 +89,10 @@ keyboard.on_press_key("0", lambda _: set_stuff(throttle_=0.0, kmh_=0, rpm_=0))
 settings = Settings(engine_max_rpm=7000, engine_low_rpm=650, max_speed=120)
 
 while True:
+    s = time.time()
     a.process_audio(beamng_adapter.get_status(settings))
 
-    time.sleep(1 / 60)
+    time.sleep((1 / 30) - min((time.time() - s), 0))
 # import os
 # import time
 

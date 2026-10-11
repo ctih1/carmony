@@ -5,7 +5,6 @@ from audio_manager import CarStatus, Settings
 # class BeamngAdapter:
 #     def __init__(self):
 
-import time
 
 session = requests.Session()
 
