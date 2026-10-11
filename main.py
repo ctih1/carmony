@@ -2,6 +2,7 @@ import time
 
 import keyboard
 import pygame
+import beamng_adapter
 
 from audio_manager import AudioManager, CarStatus, Settings, keep_between_0_1
 
@@ -78,16 +79,10 @@ keyboard.on_press_key("8", lambda _: set_stuff(throttle_=0.4, kmh_=60, rpm_=1400
 keyboard.on_press_key("9", lambda _: set_stuff(throttle_=0.3, kmh_=30, rpm_=1800))
 keyboard.on_press_key("0", lambda _: set_stuff(throttle_=0.0, kmh_=0, rpm_=0))
 
+settings = Settings(engine_max_rpm=7000, engine_low_rpm=650, max_speed=120)
 
 while True:
-    a.process_audio(
-        CarStatus(
-            engine_rpm=rpm,
-            speed_kmh=kmh,
-            throttle_percentage=throttle,
-            settings=Settings(engine_max_rpm=6500, engine_low_rpm=900, max_speed=120),
-        )
-    )
+    a.process_audio(beamng_adapter.get_status(settings))
 
     time.sleep(1 / 60)
 # import os
