@@ -132,6 +132,7 @@ class AudioManager:
         self.audios.drums.channel.set_volume(
             keep_between_0_1(
                 (speed_percentage + car_status.throttle_percentage * 0.1)
+                + (keep_between_0_1(acceleration - speed_percentage) * 0.2)
                 - ((1 - speed_percentage) / 2)
             )
         )

@@ -7,12 +7,12 @@ import beamng_adapter
 from audio_manager import AudioManager, CarStatus, Settings, keep_between_0_1
 
 end = "mp3"
-prefix = "new/"
+prefix = "emusic/"
 a = AudioManager(
     [
         f"assets/{prefix}bass.{end}",
         f"assets/{prefix}drums.{end}",
-        f"assets/{prefix}misc.{end}",
+        f"assets/{prefix}other.{end}",
         f"assets/{prefix}vocals.{end}",
     ]
 )
