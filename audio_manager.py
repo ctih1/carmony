@@ -48,8 +48,6 @@ class CarStatus:
     speed_kmh: int
     engine_rpm: int
     throttle_percentage: float
-    brake_percentage: float
-    clutch_depression_percentage: float
     settings: Settings
 
 
@@ -157,5 +155,5 @@ class AudioManager:
             f"Bass: {self.audios.bass.channel.get_volume()}\nDrums: {self.audios.drums.channel.get_volume()}\nMisc: {self.audios.misc.channel.get_volume()}\nVoice: {self.audios.vocals.channel.get_volume()}"
         )
         print(
-            f"\nThrottle: {round(status.throttle_percentage*100)}%, speed: {round(status.speed_kmh)}kmh, Acceleration: {round(accel)}mss, Engine RPM: {round(status.engine_rpm)}rpm, clutch: {round(status.clutch_depression_percentage*100)}, brake: {round(status.brake_percentage)}"
+            f"\nThrottle: {round(status.throttle_percentage*100)}%, speed: {round(status.speed_kmh)}kmh, Acceleration: {round(accel)}mss, Engine RPM: {round(status.engine_rpm)}rpm"
         )

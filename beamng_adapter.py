@@ -27,8 +27,6 @@ def get_status(settings: Settings) -> CarStatus:
     return CarStatus(
         speed_kmh=data["airspeed"] * 3.6,
         engine_rpm=data["rpm"],
-        clutch_depression_percentage=data["clutch"],
-        brake_percentage=data["brake"],
         settings=settings,
         throttle_percentage=data["throttle"],
     )

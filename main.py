@@ -94,18 +94,18 @@ settings = Settings(engine_max_rpm=7000, engine_low_rpm=650, max_speed=120)
 while True:
     s = time.time()
     # a.process_audio(beamng_adapter.get_status(settings))
-    a.process_audio(CarStatus(
-        brake_percentage=0,
-        clutch_depression_percentage=0,
-        engine_rpm=obd.get_rpm(),
-        speed_kmh=obd.get_speed(),
-        throttle_percentage=obd.get_throttle(),
-        settings=Settings(
-            engine_low_rpm=900,
-            engine_max_rpm=6500,
-            max_speed=100
+    a.process_audio(
+        CarStatus(
+            engine_rpm=obd.get_rpm(),
+            speed_kmh=obd.get_speed(),
+            throttle_percentage=obd.get_throttle(1400, 7000),
+            settings=Settings(
+                engine_low_rpm=900,
+                engine_max_rpm=6500,
+                max_speed=100,
+            ),
         )
-    ))
+    )
 
     time.sleep((1 / 30) - min((time.time() - s), 0))
 # import os
