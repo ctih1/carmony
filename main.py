@@ -98,7 +98,7 @@ while True:
         CarStatus(
             engine_rpm=obd.get_rpm(),
             speed_kmh=obd.get_speed(),
-            throttle_percentage=obd.get_throttle(1400, 7000),
+            throttle_percentage=0.4,
             settings=Settings(
                 engine_low_rpm=900,
                 engine_max_rpm=6500,
