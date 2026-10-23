@@ -10,7 +10,7 @@ obd = OBDHandler.OBDHandler()
 from audio_manager import AudioManager, CarStatus, Settings, keep_between_0_1
 
 end = "mp3"
-prefix = "emusic/"
+prefix = "emusicidontwanna/"
 a = AudioManager(
     [
         f"assets/{prefix}bass.{end}",
@@ -102,10 +102,11 @@ while True:
             settings=Settings(
                 engine_low_rpm=900,
                 engine_max_rpm=6500,
-                max_speed=100,
+                max_speed=90,
             ),
         )
     )
+    # a.process_audio(beamng_adapter.get_status(settings))
 
     time.sleep((1 / 30) - min((time.time() - s), 0))
 # import os

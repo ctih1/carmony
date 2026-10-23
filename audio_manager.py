@@ -94,13 +94,13 @@ class AudioManager:
 
         self.speeds.append((time.time(), car_status.speed_kmh))
 
-        acceleration = 0
+        acceleration_mps = 0
 
         if len(self.speeds) == self.speeds.maxlen:
             first_point = self.speeds[0]
-            recent_point = self.speeds[1]
+            recent_point = self.speeds[-1]
 
-            acceleration = (
+            acceleration_mps = (
                 (recent_point[1] - first_point[1])
                 / (recent_point[0] - first_point[0])
                 / 3.6
@@ -130,7 +130,7 @@ class AudioManager:
         self.audios.drums.channel.set_volume(
             keep_between_0_1(
                 (speed_percentage + car_status.throttle_percentage * 0.1)
-                + (keep_between_0_1(acceleration - speed_percentage) * 0.2)
+                + (keep_between_0_1(acceleration_mps - speed_percentage) * 0.2)
                 - ((1 - speed_percentage) / 2)
             )
         )
@@ -141,16 +141,16 @@ class AudioManager:
                     speed_percentage
                     + (car_status.throttle_percentage**2) * 0.1
                     + added_rpm_sound * 2
-                    + (acceleration / 10) ** 2
+                    + (acceleration_mps / 10) ** 2
                 )
                 - ((1 - speed_percentage**2))
             )
         )
 
-        self.print_status(car_status, acceleration)
+        self.print_status(car_status, acceleration_mps)
 
     def print_status(self, status: CarStatus, accel: float):
-        print("\033[6A\033[2K", end="")
+        print("\033[7A\033[2K", end="")
         print(
             f"Bass: {self.audios.bass.channel.get_volume()}\nDrums: {self.audios.drums.channel.get_volume()}\nMisc: {self.audios.misc.channel.get_volume()}\nVoice: {self.audios.vocals.channel.get_volume()}"
         )
