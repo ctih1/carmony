@@ -7,6 +7,7 @@ class OBDHandler:
         self.connection = obd.OBD("COM6")  # auto-connects to USB or RF port
         self.speed = 0
         self.rpm = 0
+        self.throttle = 0
 
     def get_speed(self):
         cmd = obd.commands.SPEED  # select an OBD command (sensor)
@@ -30,9 +31,10 @@ class OBDHandler:
         self.rpm = a
         return a
 
-    def get_throttle(self, min: int, max: int):
+    def get_throttle(self, min: float, max: float):
         cmd = obd.commands.THROTTLE_ACTUATOR
         response = self.connection.query(cmd)
-        current_val = response.value.magnitude
-        return current_val
-        return (current_val - min) / (max - min)
+        if response.is_null():
+            return self.throttle
+        self.throttle = response.value.magnitude
+        return self.throttle / 100

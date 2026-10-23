@@ -11,6 +11,7 @@ from audio_manager import AudioManager, CarStatus, Settings, keep_between_0_1
 
 end = "mp3"
 prefix = "emusicidontwanna/"
+
 a = AudioManager(
     [
         f"assets/{prefix}bass.{end}",
@@ -98,7 +99,7 @@ while True:
         CarStatus(
             engine_rpm=obd.get_rpm(),
             speed_kmh=obd.get_speed(),
-            throttle_percentage=0.4,
+            throttle_percentage=obd.get_throttle(0, 1),
             settings=Settings(
                 engine_low_rpm=900,
                 engine_max_rpm=6500,
